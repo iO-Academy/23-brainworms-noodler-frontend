@@ -5,7 +5,8 @@ function LoginForm()
 {
    return (
        <>
-           <InputAtom />
+           <InputAtom label='Email:' />
+           <InputAtom label='Password:' />
            <Button value='Login'/>
        </>
    )
