@@ -1,12 +1,12 @@
-import LoginForm from "../../Molecules/LoginForm";
-import Button from "../../Atoms/Button";
+import LoginFormMolecule from "../../Molecules/LoginFormMolecule";
+import ButtonAtom from "../../Atoms/ButtonAtom";
 
 function LoginTemplate()
 {
     return (
         <>
-            <LoginForm />
-            <Button value='Sign up'/>
+            <LoginFormMolecule />
+            <ButtonAtom value='Sign up'/>
         </>
     )
 }
