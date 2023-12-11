@@ -5,7 +5,6 @@ function App() {
 
   return (
     <>
-     <p>noodler goes here</p>
         <LoginPage />
     </>
   )
