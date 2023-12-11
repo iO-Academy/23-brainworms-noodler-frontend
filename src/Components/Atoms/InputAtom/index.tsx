@@ -1,4 +1,7 @@
-function InputAtom (props) {
+interface inputProps {
+    label: string
+}
+function InputAtom (props: inputProps) {
     return (
         <>
             <label>{props.label}</label>
