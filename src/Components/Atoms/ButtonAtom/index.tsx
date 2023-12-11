@@ -1,12 +1,13 @@
 interface ButtonProps {
-    value: string,
+    value: string
     type?: 'submit' | 'reset' | 'button' | undefined
+    onClick?: any
 }
 
 function ButtonAtom(props: ButtonProps) {
     return (
         <>
-            <button type={props.type}>{props.value}</button>
+            <button type={props.type} onClick={props.onClick}>{props.value}</button>
         </>
     )
 }
