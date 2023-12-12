@@ -1,7 +1,7 @@
 interface ButtonProps {
     value: string
     type?: 'submit' | 'reset' | 'button' | undefined
-    onClick?: any
+    onClick?: () => void
 }
 
 function ButtonAtom(props: ButtonProps) {
