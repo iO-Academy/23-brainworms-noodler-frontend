@@ -6,7 +6,7 @@ function LoginFormMolecule() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const formSubmit = (e): void => {
+    const formSubmit = (e: Event): void => {
         e.preventDefault()
         let data = {
             email: email,
@@ -36,10 +36,8 @@ function LoginFormMolecule() {
 
     }
 
-
     return (
         <>
-            <p onClick={formSubmit}>click</p>
             <form>
                 <InputAtom label='Email:' setFunc={setEmail}/>
                 <InputAtom label='Password:' type='password' setFunc={setPassword}/>
