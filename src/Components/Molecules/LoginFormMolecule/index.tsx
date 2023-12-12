@@ -1,41 +1,23 @@
 import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function LoginFormMolecule() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate();
 
     const formSubmit = (e: Event): void => {
         e.preventDefault()
-        let data = {
+        const data = {
             email: email,
             password: password
         }
 
-        // fetch('./backendAPI', {
-        //     credentials: 'same-origin',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     method: 'get',
-        //     body: JSON.stringify(data)
-        // })
-        //     .then(response => {
-        //         return response.json()
-        //     })
-        //     .then(responseJson => {
-        //         if (responseJson.success) {
-        //         } else {
-        //             console.log(responseJson.message);
-        //             console.log('error');
-        //         }
-        //     })
+        navigate("/user", {state: {email}})
         return console.log(data)
-
     }
-
     return (
         <>
             <form>
