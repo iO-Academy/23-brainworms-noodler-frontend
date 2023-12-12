@@ -1,50 +1,36 @@
 import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
-import {useState} from "react";
+import { useState } from "react";
 
 function LoginFormMolecule() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const formSubmit = (e: Event): void => {
-        e.preventDefault()
-        let data = {
-            email: email,
-            password: password
-        }
+  let formInput = {
+    userEmail: email,
+    password: password,
+  };
 
-        // fetch('./backendAPI', {
-        //     credentials: 'same-origin',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     method: 'get',
-        //     body: JSON.stringify(data)
-        // })
-        //     .then(response => {
-        //         return response.json()
-        //     })
-        //     .then(responseJson => {
-        //         if (responseJson.success) {
-        //         } else {
-        //             console.log(responseJson.message);
-        //             console.log('error');
-        //         }
-        //     })
-        return console.log(data)
+  const sendData = async () => {
+    let customSettings = {
+      method: "POST",
+      body: JSON.stringify(formInput), //turn obj into JSON format
+      headers: {
+        "Content-Type": "application/json", //state what type is being sent
+      },
+    };
+    const response = await fetch("http://0.0.0.0:8080/login", customSettings);
+    const data23 = await response.json();
+    console.log(data23);
+  };
 
-    }
-
-    return (
-        <>
-            <form>
-                <InputAtom label='Email:' setFunc={setEmail}/>
-                <InputAtom label='Password:' type='password' setFunc={setPassword}/>
-                <ButtonAtom value='Login' type='submit' onClick={formSubmit}/>
-            </form>
-        </>
-    )
+  return (
+    <>
+      <InputAtom label="Email:" setFunc={setEmail} />
+      <InputAtom label="Password:" type="password" setFunc={setPassword} />
+      <ButtonAtom value="Login" onClick={sendData} />
+    </>
+  );
 }
 
 export default LoginFormMolecule;
