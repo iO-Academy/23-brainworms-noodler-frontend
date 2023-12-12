@@ -6,13 +6,11 @@ interface InputProps {
 }
 function InputAtom (props: InputProps) {
     const { label, type = 'text', setFunc, maxlength } = props;
-
-
     return (
         <>
             <label>{label}</label>
             <input type={type} maxLength={maxlength} onChange={(e) => {
-                let buttonVal: HTMLInputElement = e.target
+                const buttonVal: HTMLInputElement = e.target
                 setFunc(buttonVal.value)
             }}></input>
         </>

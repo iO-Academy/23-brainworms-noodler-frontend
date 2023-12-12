@@ -7,19 +7,19 @@ function RegistrationFormMolecule() {
     interface iFormData {
         email: string,
         password: string,
-        userName: string,
+        username: string,
         description: string
     }
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [userName, setUserName] = useState('')
+    const [username, setUserName] = useState('')
     const [description, setDescription] = useState('')
 
     const validateData = (formData: iFormData): boolean => {
         //to be coded up
         let result: boolean = false
-        if (formData.email && formData.password && formData.userName) {
+        if (formData.email && formData.password && formData.username) {
             if (formData.email.includes('@') && !formData.email.includes(' ')) {
                 result = true;
             }
@@ -30,16 +30,14 @@ function RegistrationFormMolecule() {
     const newUserSubmit = (e: MouseEvent): void => {
         e.preventDefault()
 
-        let formData: iFormData = {
+        const formData: iFormData = {
             email: email,
             password: password,
-            userName: userName,
+            username: username,
             description: description
         }
 
         if (validateData(formData)) {
-
-
             // fetch('./backendAPI', {
             //     credentials: 'same-origin',
             //     headers: {
