@@ -1,10 +1,12 @@
 import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 
 function LoginFormMolecule() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   let formInput = {
     userEmail: email,
@@ -20,8 +22,11 @@ function LoginFormMolecule() {
       },
     };
     const response = await fetch("http://0.0.0.0:8080/login", customSettings);
-    const data23 = await response.json();
-    console.log(data23);
+    const responseData = await response.json();
+
+    if (responseData) {
+      navigate("/user", {state: {responseData}})
+    }
   };
 
   return (
