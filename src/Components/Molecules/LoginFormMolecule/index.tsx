@@ -1,20 +1,20 @@
 import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginFormMolecule() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  let formInput = {
+  const formInput = {
     userEmail: email,
     password: password,
   };
 
   const sendData = async () => {
-    let customSettings = {
+    const customSettings = {
       method: "POST",
       body: JSON.stringify(formInput), //turn obj into JSON format
       headers: {
@@ -24,7 +24,7 @@ function LoginFormMolecule() {
     const response = await fetch("http://0.0.0.0:8080/login", customSettings);
     const responseData = await response.json();
 
-    if (responseData) {
+    if (responseData.success) {
       navigate("/user", {state: {responseData}})
     }
   };
