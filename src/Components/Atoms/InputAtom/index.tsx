@@ -7,7 +7,7 @@ interface InputProps {
 function InputAtom (props: InputProps) {
     const { label, type = 'text', setFunc, maxlength } = props;
     return (
-        <div className='flex gap-x-4'>
+        <div className='flex gap-x-4 place-self-center'>
             <label>{label}</label>
             <input className='border-2' type={type} maxLength={maxlength} onChange={(e) => {
                 const buttonVal: HTMLInputElement = e.target
