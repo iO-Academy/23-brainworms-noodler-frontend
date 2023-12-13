@@ -1,9 +1,15 @@
 import HeaderTemplate from "../../Templates/HeaderTemplate";
+import NoodleBowlTemplate from "../../Templates/NoodleBowlTemplate";
+import NewNoodleTemplate from "../../Templates/NewNoodleTemplate";
+import {useState} from "react";
 
 function ProfilePage () {
+    const [DisplayNewNoodleToggle, setDisplayNewNoodleToggle] = useState(false)
     return (
         <>
-        <HeaderTemplate />
+            <HeaderTemplate />
+            <NoodleBowlTemplate setNewNoodleToggle ={setDisplayNewNoodleToggle} displayNewNoodleToggle = {DisplayNewNoodleToggle}/>
+            <NewNoodleTemplate setNewNoodleToggle ={setDisplayNewNoodleToggle} displayNewNoodleToggle = {DisplayNewNoodleToggle}/>
         </>
     )
 }
