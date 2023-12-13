@@ -32,7 +32,7 @@ function LoginFormMolecule() {
     } else {
       setErrorMessage(responseData.msg)
     }
-  };
+  }
 
   return (
     <>
