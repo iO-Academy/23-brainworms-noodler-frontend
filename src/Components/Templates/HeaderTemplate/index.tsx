@@ -1,7 +1,7 @@
 import LogoAtom from "../../Atoms/LogoAtom";
 import DisplayAtom from "../../Atoms/DisplayAtom";
-import {useLocation} from "react-router-dom";
-import {useEffect, useState} from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface iUserInfo {
     username: string,
