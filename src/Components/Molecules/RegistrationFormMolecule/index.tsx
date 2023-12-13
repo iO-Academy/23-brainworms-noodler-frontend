@@ -90,6 +90,7 @@ function RegistrationFormMolecule() {
         label="Description: "
         maxlength={500}
         setFunc={setDescription}></InputAtom>
+      <ButtonAtom value="Sign Up" onClick={submitRegistrationData}></ButtonAtom>
       <FormOutcomeAtom
           message={formOutcomeMessage}
           className={'text-sm border-2 px-1 py-3 place-self-center w-2/3 ' + formOutcomeColors}
