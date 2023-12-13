@@ -28,7 +28,6 @@ function HeaderTemplate () {
             const response = await fetch(`http://0.0.0.0:8080/users/${userId}`, customSettings);
             const userInfo = await response.json();
             setUserInfo(userInfo)
-            return 'success'
         }
         fetchData()
     }, [])
