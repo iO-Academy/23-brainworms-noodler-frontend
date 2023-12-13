@@ -4,7 +4,7 @@ interface iFormOutcomeProps {
 }
 
 function FormOutcomeAtom(props: iFormOutcomeProps) {
-    const {message, className} = props;
+    const { message, className } = props;
     return (
         <div className={className}>
             {message}

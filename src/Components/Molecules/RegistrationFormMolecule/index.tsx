@@ -47,7 +47,6 @@ function RegistrationFormMolecule() {
   }
 
   const sendRegistrationData = async () => {
-    console.log("hi");
     let customSettings = {
       method: "POST",
       body: JSON.stringify(regFormInput), //turn obj into JSON format
@@ -55,13 +54,11 @@ function RegistrationFormMolecule() {
         "Content-Type": "application/json", //state what type is being sent
       },
     };
-    console.log("hiya");
     const response = await fetch(
       "http://0.0.0.0:8080/register",
       customSettings
     );
     const data23 = await response.json();
-    console.log(data23);
   };
 
   const submitRegistrationData = () => {
