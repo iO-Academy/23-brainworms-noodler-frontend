@@ -2,6 +2,8 @@ import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import LogoAtom from "../../Atoms/LogoAtom";
+import LoginTemplate from "../../Templates/LoginTemplate";
 
 function RegistrationFormMolecule() {
   interface iFormData {
@@ -41,15 +43,18 @@ function RegistrationFormMolecule() {
     console.log(data23);
   };
 
+
+
   return (
     <>
-      <InputAtom type="email" label="Email: " setFunc={setEmail}></InputAtom>
-      <InputAtom label="Username: " setFunc={setUserName}></InputAtom>
-      <InputAtom
+      <LogoAtom image='public/assets/Noodler-logo.png' />
+      <InputAtom className="p-4" type="email" label="Email: " setFunc={setEmail}></InputAtom>
+      <InputAtom className="p-4" label="Username: " setFunc={setUserName}></InputAtom>
+      <InputAtom className="p-4"
         type="password"
         label="Password: "
         setFunc={setPassword}></InputAtom>
-      <InputAtom
+      <InputAtom className="p-4"
         label="Description: "
         maxlength={500}
         setFunc={setDescription}></InputAtom>

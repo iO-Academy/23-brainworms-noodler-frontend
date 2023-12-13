@@ -5,7 +5,7 @@ function LoginPage()
 {
     return (
         <>
-            <LogoAtom image='https://placedog.net/200/200' />
+            <LogoAtom image='public/assets/Noodler-logo.png' />
             <LoginTemplate />
         </>
     )

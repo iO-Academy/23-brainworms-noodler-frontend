@@ -1,5 +1,6 @@
 import RegistrationFormMolecule from "../../Molecules/RegistrationFormMolecule";
 
+
 function RegistrationPage()
 {
     return (
