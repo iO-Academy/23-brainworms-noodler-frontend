@@ -1,8 +1,10 @@
 import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
+import DisplayAtom from "../../Atoms/DisplayAtom";
+
 
 function RegistrationFormMolecule() {
   interface iRegistrationData {
@@ -19,13 +21,16 @@ function RegistrationFormMolecule() {
   const [formOutcomeMessage, setFormOutcomeMessage] = useState('');
   const [formOutcomeColors , setFormOutcomeColors] = useState("hidden")
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/;
-
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  
   let regFormInput = {
     username: username,
     description: description,
     email: email,
     password: password
   };
+
 
   const validateRegData = (regFormInput: iRegistrationData) => {
     let result = false;
@@ -58,7 +63,12 @@ function RegistrationFormMolecule() {
       "http://0.0.0.0:8080/register",
       customSettings
     );
-    const data23 = await response.json();
+    const responseData = await response.json();
+    if (responseData.success) {
+      navigate("/user", {state: {responseData}})
+    } else {
+      setErrorMessage(responseData.msg)
+    }
   };
 
   const submitRegistrationData = () => {
@@ -84,7 +94,7 @@ function RegistrationFormMolecule() {
           message={formOutcomeMessage}
           className={'text-sm border-2 px-1 py-3 place-self-center w-2/3 ' + formOutcomeColors}
       />
-      <ButtonAtom value="Sign Up" onClick={submitRegistrationData}></ButtonAtom>
+      <DisplayAtom text={errorMessage} />
       <Link to={"/"}>
         <ButtonAtom value="Back"></ButtonAtom>{" "}
       </Link>
