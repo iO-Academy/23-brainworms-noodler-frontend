@@ -11,7 +11,7 @@ function HeaderTemplate () {
 
     useEffect(() => {
         async function fetchData() {
-            let customSettings = {
+            const customSettings = {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json", //state what type is being sent

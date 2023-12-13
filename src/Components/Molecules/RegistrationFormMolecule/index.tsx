@@ -1,6 +1,6 @@
 import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 
 function RegistrationFormMolecule() {
@@ -15,30 +15,31 @@ function RegistrationFormMolecule() {
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
-  let formInput = {
+  const formInput: iFormData = {
     username: username,
     description: description,
     email: email,
-    password: password,
+    password: password
   };
 
   const sendData = async () => {
-    console.log("hi");
-    let customSettings = {
+    const customSettings = {
       method: "POST",
       body: JSON.stringify(formInput), //turn obj into JSON format
       headers: {
         "Content-Type": "application/json", //state what type is being sent
       },
     };
-    console.log("hiya");
     const response = await fetch(
       "http://0.0.0.0:8080/register",
       customSettings
     );
-    const data23 = await response.json();
-    console.log(data23);
+    const responseData = await response.json();
+    if (responseData.success) {
+      navigate("/user", {state: {responseData}})
+    }
   };
 
   return (
