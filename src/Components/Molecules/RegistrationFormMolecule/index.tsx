@@ -2,6 +2,7 @@ import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import DisplayAtom from "../../Atoms/DisplayAtom";
 
 function RegistrationFormMolecule() {
   interface iFormData {
@@ -16,6 +17,7 @@ function RegistrationFormMolecule() {
   const [username, setUserName] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const formInput: iFormData = {
     username: username,
@@ -39,6 +41,8 @@ function RegistrationFormMolecule() {
     const responseData = await response.json();
     if (responseData.success) {
       navigate("/user", {state: {responseData}})
+    } else {
+      setErrorMessage(responseData.msg)
     }
   };
 
@@ -55,7 +59,7 @@ function RegistrationFormMolecule() {
         maxlength={500}
         setFunc={setDescription}></InputAtom>
       <ButtonAtom value="Sign Up" onClick={sendData}></ButtonAtom>
-
+      <DisplayAtom text={errorMessage} />
       <Link to={"/"}>
         <ButtonAtom value="Back"></ButtonAtom>{" "}
       </Link>
