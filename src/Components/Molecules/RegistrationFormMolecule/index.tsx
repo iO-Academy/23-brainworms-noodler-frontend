@@ -2,6 +2,7 @@ import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
 
 function RegistrationFormMolecule() {
   interface iRegistrationData {
@@ -15,24 +16,32 @@ function RegistrationFormMolecule() {
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
   const [description, setDescription] = useState("");
+  const [formOutcomeMessage, setFormOutcomeMessage] = useState('');
+  const [formOutcomeColors , setFormOutcomeColors] = useState("hidden")
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/;
 
   let regFormInput = {
     username: username,
     description: description,
     email: email,
-    password: password,
+    password: password
   };
 
   const validateRegData = (regFormInput: iRegistrationData) => {
     let result = false;
+    setFormOutcomeColors('block bg-red-100');
     if (!regFormInput.username || !regFormInput.email || !regFormInput.password) {
-      console.log('Username, email and password fields are mandatory')
+      setFormOutcomeMessage('Username, email and password fields are mandatory');
     } else if (!regFormInput.email.includes('@') || regFormInput.email.includes(' ')) {
-      console.log('Invalid Email')
-    } else if (regFormInput.password.length < 8 || regFormInput.password.length >16) {
-      console.log('Invalid password. Passwords must be 8-16 characters.')
+      setFormOutcomeMessage('Invalid Email');
+    } else if (regFormInput.password.length < 8 || !passwordRegex.test(regFormInput.password)) {
+      setFormOutcomeMessage('Invalid password. Passwords must be at least 8 characters, contain an upper and lower case letter, at least one number and special character.');
+    } else if (regFormInput.description.length > 500) {
+      setFormOutcomeMessage('Description cannot be more than 500 characters.');
     } else {
       result = true;
+      setFormOutcomeMessage('Form successfully submitted');
+      setFormOutcomeColors('block bg-green-100')
     }
     return result;
   }
@@ -63,7 +72,7 @@ function RegistrationFormMolecule() {
     }}
 
   return (
-    <>
+    <div className='flex flex-col gap-4'>
       <InputAtom type="email" label="* Email: " setFunc={setEmail}></InputAtom>
       <InputAtom label="* Username: " setFunc={setUserName}></InputAtom>
       <InputAtom
@@ -75,11 +84,15 @@ function RegistrationFormMolecule() {
         maxlength={500}
         setFunc={setDescription}></InputAtom>
       <ButtonAtom value="Sign Up" onClick={submitRegistrationData}></ButtonAtom>
+      <FormOutcomeAtom
+          message={formOutcomeMessage}
+          className={'text-sm border-2 px-1 py-3 place-self-center ' + formOutcomeColors}
+      />
 
       <Link to={"/"}>
         <ButtonAtom value="Back"></ButtonAtom>{" "}
       </Link>
-    </>
+    </div>
   );
 }
 
