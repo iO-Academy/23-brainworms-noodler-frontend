@@ -7,7 +7,7 @@ interface ButtonProps {
 function ButtonAtom(props: ButtonProps) {
     return (
         <>
-            <button type={props.type} onClick={props.onClick}>{props.value}</button>
+            <button  className="ml-2 mt-2 border border-gray-300 p-2 rounded-md" type={props.type} onClick={props.onClick}>{props.value}</button>
         </>
     )
 }

@@ -2,9 +2,10 @@ import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import LogoAtom from "../../Atoms/LogoAtom";
+import LoginTemplate from "../../Templates/LoginTemplate";
 import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
 import DisplayAtom from "../../Atoms/DisplayAtom";
-
 
 function RegistrationFormMolecule() {
   interface iRegistrationData {
@@ -80,13 +81,14 @@ function RegistrationFormMolecule() {
 
   return (
     <div className='flex flex-col gap-4'>
+      <LogoAtom image='public/assets/Noodler-logo.png' />
       <InputAtom type="email" label="* Email: " setFunc={setEmail}></InputAtom>
       <InputAtom label="* Username: " setFunc={setUserName}></InputAtom>
       <InputAtom
         type="password"
         label="* Password: "
         setFunc={setPassword}></InputAtom>
-      <InputAtom
+      <InputAtom className="p-4"
         label="Description: "
         maxlength={500}
         setFunc={setDescription}></InputAtom>

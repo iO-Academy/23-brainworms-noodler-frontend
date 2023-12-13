@@ -1,12 +1,16 @@
+//
+// import '.public/assets/Noodler-logo.png'
+
 interface LogoProps {
-    image: string
-}
-function logoAtom (props: LogoProps) {
-    return (
-        <>
-            <img src={props.image}></img>
-        </>
-    )
+    image: string;
 }
 
-export default logoAtom
+function LogoAtom(props: LogoProps) {
+    return (
+        <div className="flex justify-center items-center">
+            <img src={props.image} alt="logo" />
+        </div>
+    );
+}
+
+export default LogoAtom;
