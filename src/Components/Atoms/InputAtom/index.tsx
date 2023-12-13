@@ -8,13 +8,14 @@ interface InputProps {
 function InputAtom (props: InputProps) {
     const { label,className='', type = 'text', setFunc, maxlength } = props;
     return (
-        <>
-            <label className={className}>{label}</label>
-            <input className="border border-gray-300 p-2 rounded-md" type={type} maxLength={maxlength} onChange={(e) => {
+
+        <div className='flex gap-x-4 place-self-center'>
+            <label>{label}</label>
+            <input className='border border-gray-300 p-2 rounded-md' type={type} maxLength={maxlength} onChange={(e) => {
                 const buttonVal: HTMLInputElement = e.target
                 setFunc(buttonVal.value)
             }}></input>
-        </>
+        </div>
     )
 }
 

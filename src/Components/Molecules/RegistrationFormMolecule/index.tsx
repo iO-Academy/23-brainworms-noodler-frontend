@@ -1,12 +1,14 @@
 import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import LogoAtom from "../../Atoms/LogoAtom";
 import LoginTemplate from "../../Templates/LoginTemplate";
+import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
+import DisplayAtom from "../../Atoms/DisplayAtom";
 
 function RegistrationFormMolecule() {
-  interface iFormData {
+  interface iRegistrationData {
     email: string;
     password: string;
     username: string;
@@ -17,51 +19,89 @@ function RegistrationFormMolecule() {
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
   const [description, setDescription] = useState("");
-
-  let formInput = {
+  const [formOutcomeMessage, setFormOutcomeMessage] = useState('');
+  const [formOutcomeColors , setFormOutcomeColors] = useState("hidden")
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/;
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  
+  let regFormInput = {
     username: username,
     description: description,
     email: email,
-    password: password,
+    password: password
   };
 
-  const sendData = async () => {
-    console.log("hi");
+
+  const validateRegData = (regFormInput: iRegistrationData) => {
+    let result = false;
+    setFormOutcomeColors('block bg-red-100');
+    if (!regFormInput.username || !regFormInput.email || !regFormInput.password) {
+      setFormOutcomeMessage('Username, email and password fields are mandatory');
+    } else if (!regFormInput.email.includes('@') || regFormInput.email.includes(' ')) {
+      setFormOutcomeMessage('Invalid Email');
+    } else if (regFormInput.password.length < 8 || !passwordRegex.test(regFormInput.password)) {
+      setFormOutcomeMessage('Invalid password. Passwords must be at least 8 characters, contain an upper and lower case letter, at least one number and special character.');
+    } else if (regFormInput.description.length > 500) {
+      setFormOutcomeMessage('Description cannot be more than 500 characters.');
+    } else {
+      result = true;
+      setFormOutcomeMessage('Form successfully submitted');
+      setFormOutcomeColors('block bg-green-100')
+    }
+    return result;
+  }
+
+  const sendRegistrationData = async () => {
     let customSettings = {
       method: "POST",
-      body: JSON.stringify(formInput), //turn obj into JSON format
+      body: JSON.stringify(regFormInput), //turn obj into JSON format
       headers: {
         "Content-Type": "application/json", //state what type is being sent
       },
     };
-    console.log("hiya");
     const response = await fetch(
       "http://0.0.0.0:8080/register",
       customSettings
     );
-    const data23 = await response.json();
-    console.log(data23);
+    const responseData = await response.json();
+    if (responseData.success) {
+      navigate("/user", {state: {responseData}})
+    } else {
+      setErrorMessage(responseData.msg)
+    }
   };
 
+  const submitRegistrationData = () => {
+    if (!validateRegData(regFormInput)) {
+      console.log('Failed frontend validation')
+    } else {
+      sendRegistrationData();
+    }}
+
   return (
-    <>
+    <div className='flex flex-col gap-4'>
       <LogoAtom image='public/assets/Noodler-logo.png' />
-      <InputAtom className="p-4" type="email" label="Email: " setFunc={setEmail}></InputAtom>
-      <InputAtom className="p-4" label="Username: " setFunc={setUserName}></InputAtom>
-      <InputAtom className="p-4"
+      <InputAtom type="email" label="* Email: " setFunc={setEmail}></InputAtom>
+      <InputAtom label="* Username: " setFunc={setUserName}></InputAtom>
+      <InputAtom
         type="password"
-        label="Password: "
+        label="* Password: "
         setFunc={setPassword}></InputAtom>
       <InputAtom className="p-4"
         label="Description: "
         maxlength={500}
         setFunc={setDescription}></InputAtom>
-      <ButtonAtom value="Sign Up" onClick={sendData}></ButtonAtom>
-
+      <ButtonAtom value="Sign Up" onClick={submitRegistrationData}></ButtonAtom>
+      <FormOutcomeAtom
+          message={formOutcomeMessage}
+          className={'text-sm border-2 px-1 py-3 place-self-center w-2/3 ' + formOutcomeColors}
+      />
+      <DisplayAtom text={errorMessage} />
       <Link to={"/"}>
         <ButtonAtom value="Back"></ButtonAtom>{" "}
       </Link>
-    </>
+    </div>
   );
 }
 
