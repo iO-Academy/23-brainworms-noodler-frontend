@@ -23,7 +23,9 @@ function RegistrationFormMolecule() {
     password: password,
   };
 
-  const sendData = async () => {
+
+
+  const sendRegistrationData = async () => {
     console.log("hi");
     let customSettings = {
       method: "POST",
@@ -53,7 +55,7 @@ function RegistrationFormMolecule() {
         label="Description: "
         maxlength={500}
         setFunc={setDescription}></InputAtom>
-      <ButtonAtom value="Sign Up" onClick={sendData}></ButtonAtom>
+      <ButtonAtom value="Sign Up" onClick={sendRegistrationData}></ButtonAtom>
 
       <Link to={"/"}>
         <ButtonAtom value="Back"></ButtonAtom>{" "}
