@@ -8,13 +8,13 @@ function LoginFormMolecule() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  let formInput = {
+  const formInput = {
     userEmail: email,
     password: password,
   };
 
   const sendData = async () => {
-    let customSettings = {
+    const customSettings = {
       method: "POST",
       body: JSON.stringify(formInput), //turn obj into JSON format
       headers: {
@@ -24,7 +24,7 @@ function LoginFormMolecule() {
     const response = await fetch("http://0.0.0.0:8080/login", customSettings);
     const responseData = await response.json();
 
-    if (responseData) {
+    if (responseData.success) {
       navigate("/user", {state: {responseData}})
     }
   };
