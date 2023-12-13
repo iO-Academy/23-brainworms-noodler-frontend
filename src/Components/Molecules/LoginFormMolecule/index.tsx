@@ -7,27 +7,11 @@ function LoginFormMolecule() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  interface iLoginFormInput {
-    userEmail: string
-    password: string
-  }
 
   let formInput = {
     userEmail: email,
     password: password,
   };
-
-  const validateLoginData = (formInput: iLoginFormInput) => {
-    let result = false;
-    if (!formInput.userEmail.includes('@') || formInput.userEmail.includes(' ')) {
-      console.log('Invalid Email')
-    } else if (formInput.password.length < 8) {
-      console.log('Invalid password')
-    } else {
-      result = true;
-    }
-    return result;
-  }
 
   const sendData = async () => {
     let customSettings = {
@@ -45,18 +29,11 @@ function LoginFormMolecule() {
     }
   }
 
-  const submitData = () => {
-  if (!validateLoginData(formInput)) {
-    console.log('Failed frontend validation')
-  } else {
-    sendData();
-  }}
-
   return (
     <>
       <InputAtom label="Email:" setFunc={setEmail} />
       <InputAtom label="Password:" type="password" setFunc={setPassword} />
-      <ButtonAtom value="Login" onClick={submitData} />
+      <ButtonAtom value="Login" onClick={sendData} />
     </>
   );
 }
