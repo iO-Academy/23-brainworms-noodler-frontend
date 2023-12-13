@@ -43,8 +43,6 @@ function RegistrationFormMolecule() {
     console.log(data23);
   };
 
-
-
   return (
     <>
       <LogoAtom image='public/assets/Noodler-logo.png' />

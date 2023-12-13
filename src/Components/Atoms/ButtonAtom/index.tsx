@@ -11,4 +11,5 @@ function ButtonAtom(props: ButtonProps) {
         </>
     )
 }
+
 export default ButtonAtom;
