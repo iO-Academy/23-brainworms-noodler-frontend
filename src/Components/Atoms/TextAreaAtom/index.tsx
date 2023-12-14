@@ -1,6 +1,5 @@
 interface iTextAreaProps {
     label: string
-    className?: string
     setFunc: (value: string) => void
     maxlength?: number
 }

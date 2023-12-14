@@ -25,7 +25,6 @@ function LoginFormMolecule() {
         };
         const response = await fetch("http://0.0.0.0:8080/login", customSettings);
         const responseData = await response.json();
-        console.log(responseData)
 
         if (responseData.success) {
             navigate("/user", {state: {responseData}})
