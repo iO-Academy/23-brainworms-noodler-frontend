@@ -1,6 +1,3 @@
-//
-// import '.public/assets/Noodler-logo.png'
-
 interface LogoProps {
     image: string
     width?: number
