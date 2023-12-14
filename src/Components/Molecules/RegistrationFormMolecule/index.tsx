@@ -22,7 +22,7 @@ function RegistrationFormMolecule() {
     const [description, setDescription] = useState("");
     const [formOutcomeMessage, setFormOutcomeMessage] = useState('');
     const [formOutcomeColors, setFormOutcomeColors] = useState("hidden")
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=?!]).*$/;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -70,6 +70,8 @@ function RegistrationFormMolecule() {
             navigate("/user", {state: {responseData}})
         } else {
             setErrorMessage(responseData.msg)
+            setFormOutcomeColors('block bg-red-200')
+            setFormOutcomeMessage(responseData.msg)
         }
     };
 
@@ -98,7 +100,6 @@ function RegistrationFormMolecule() {
                 message={formOutcomeMessage}
                 className={'text-sm border-2 px-1 py-3 place-self-center w-2/3 ' + formOutcomeColors}
             />
-            <DisplayAtom text={errorMessage}/>
             <Link to={"/"}>
                 <ButtonAtom value="Cancel"></ButtonAtom>{" "}
             </Link>
