@@ -31,7 +31,6 @@ function RegistrationFormMolecule() {
         password: password
     };
 
-
     const validateRegData = (regFormInput: iRegistrationData) => {
         let result = false;
         setFormOutcomeColors('block bg-red-100');

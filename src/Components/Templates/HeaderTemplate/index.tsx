@@ -11,10 +11,12 @@ interface iUserObject {
     data: iUserInfo
 }
 
-function HeaderTemplate () {
-    const location = useLocation()
-    const data = location.state
-    const userId: number = data.responseData.userId
+interface iProps {
+    userId: number
+}
+
+function HeaderTemplate (props: iProps) {
+    const userId = props.userId
     const [userInfo, setUserInfo] = useState<iUserObject>({data: {username: '', description:''}})
 
     useEffect(() => {
