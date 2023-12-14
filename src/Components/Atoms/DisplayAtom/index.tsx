@@ -1,9 +1,10 @@
 interface DisplayProps {
-    text: string
+    text: string,
+    className?: string
 }
 function DisplayAtom (props: DisplayProps) {
     return (
-        <div>
+        <div className={props.className}>
             {props.text}
         </div>
     )

@@ -34,9 +34,11 @@ function LoginFormMolecule() {
         }
     }
     return (
-        <div className='flex flex-col gap-4 align items-center'>
-            <InputAtom label="Email:" setFunc={setEmail}/>
-            <InputAtom label="Password:" type="password" setFunc={setPassword}/>
+        <div className='flex flex-col gap-4 items-center'>
+            <div className="justify-end">
+                <InputAtom className="text-xl" label="Email:" setFunc={setEmail}/>
+                <InputAtom className="text-xl" label="Password:" type="password" setFunc={setPassword}/>
+            </div>
             <ButtonAtom value="Login" onClick={sendData}/>
             <DisplayAtom text={errorMessage}/>
         </div>

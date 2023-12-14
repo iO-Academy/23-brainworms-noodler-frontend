@@ -35,11 +35,13 @@ function HeaderTemplate () {
     const {username, description} = userInfo.data
 
     return (
-        <>
-            <LogoAtom className="object-cover absolute top-24 left-24 h-60 w-60" image="public/assets/Noodler-logo.png"></LogoAtom>
-            <DisplayAtom text={username}></DisplayAtom>
-            <DisplayAtom text={description}></DisplayAtom>
-        </>
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
+            <LogoAtom className="self-center w-72 sm:w-96" image="public/assets/Noodler-logo.png"></LogoAtom>
+            <div className="flex flex-col self-center sm:w-2/3">
+                <DisplayAtom className="text-4xl sm:text-7xl" text={username}></DisplayAtom>
+                <DisplayAtom className="text-base sm:text-2xl" text={description}></DisplayAtom>
+            </div>
+        </div>
     )
 }
 
