@@ -6,6 +6,8 @@ import LogoAtom from "../../Atoms/LogoAtom";
 import LoginTemplate from "../../Templates/LoginTemplate";
 import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
 import DisplayAtom from "../../Atoms/DisplayAtom";
+import TextAreaAtom from "../../Atoms/TextAreaAtom";
+
 
 function RegistrationFormMolecule() {
   interface iRegistrationData {
@@ -80,7 +82,7 @@ function RegistrationFormMolecule() {
     }}
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 items-center'>
       <LogoAtom image='public/assets/Noodler-logo.png' />
       <InputAtom type="email" label="* Email: " setFunc={setEmail}></InputAtom>
       <InputAtom label="* Username: " setFunc={setUserName}></InputAtom>
@@ -88,10 +90,8 @@ function RegistrationFormMolecule() {
         type="password"
         label="* Password: "
         setFunc={setPassword}></InputAtom>
-      <InputAtom className="p-4"
-        label="Description: "
-        maxlength={500}
-        setFunc={setDescription}></InputAtom>
+      {/*<InputAtom className="p-4" label="Description: " type='text' maxlength={500} setFunc={setDescription}></InputAtom>*/}
+      <TextAreaAtom label="Description: " setFunc={setDescription} maxlength={500}/>
       <ButtonAtom value="Sign Up" onClick={submitRegistrationData}></ButtonAtom>
       <FormOutcomeAtom
           message={formOutcomeMessage}
@@ -99,7 +99,7 @@ function RegistrationFormMolecule() {
       />
       <DisplayAtom text={errorMessage} />
       <Link to={"/"}>
-        <ButtonAtom value="Back"></ButtonAtom>{" "}
+        <ButtonAtom value="Cancel"></ButtonAtom>{" "}
       </Link>
     </div>
   );
