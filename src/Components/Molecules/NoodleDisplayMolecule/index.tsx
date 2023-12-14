@@ -1,15 +1,23 @@
 import DisplayAtom from "../../Atoms/DisplayAtom";
 
-function NoodleDisplayMolecule () {
+interface noodleProp {
+    id: number,
+    noodle: string,
+    time: string
+}
 
-    //receive noodle info from props
+function NoodleDisplayMolecule (props: noodleProp) {
+
+    const dateObj = new Date(props.time)
+    const dateTimeArray = props.time.split(" ")
+    const time = dateTimeArray[1]
 
     return (
         <>
-            <DisplayAtom text='date'/>
-            <DisplayAtom text='time' />
-            <DisplayAtom text='This is my first noodle' />
-            <DisplayAtom text='username' />
+            <DisplayAtom text={dateObj.toDateString()}/>
+            <DisplayAtom text={time} />
+            <DisplayAtom text={props.noodle} />
+            {/*<DisplayAtom text={props.id} />*/}
         </>
     )
 }
