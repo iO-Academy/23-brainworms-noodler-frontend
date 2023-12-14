@@ -3,9 +3,9 @@ interface DisplayProps {
 }
 function DisplayAtom (props: DisplayProps) {
     return (
-        <>
-            <h2>{props.text}</h2>
-        </>
+        <div>
+            {props.text}
+        </div>
     )
 }
 
