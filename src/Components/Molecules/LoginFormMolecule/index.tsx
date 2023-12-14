@@ -34,7 +34,6 @@ function LoginFormMolecule() {
             setErrorMessage(responseData.msg)
         }
     }
-
     return (
         <div className='flex flex-col gap-4 align items-center '>
             <InputAtom className="text-xl p-4" label="Email:" setFunc={setEmail}/>

@@ -13,5 +13,3 @@ function LogoAtom(props: LogoProps) {
 }
 
 export default LogoAtom;
-
-// object-cover absolute top-24 left-24 h-60 w-60 src=public/assets/Noodler-logo.png
