@@ -4,7 +4,6 @@ import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import LogoAtom from "../../Atoms/LogoAtom";
 import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
-import DisplayAtom from "../../Atoms/DisplayAtom";
 import TextAreaAtom from "../../Atoms/TextAreaAtom";
 
 
@@ -22,7 +21,7 @@ function RegistrationFormMolecule() {
     const [description, setDescription] = useState("");
     const [formOutcomeMessage, setFormOutcomeMessage] = useState('');
     const [formOutcomeColors, setFormOutcomeColors] = useState("hidden")
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=?!]).*$/;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -70,6 +69,8 @@ function RegistrationFormMolecule() {
             navigate("/user", {state: {responseData}})
         } else {
             setErrorMessage(responseData.msg)
+            setFormOutcomeColors('block bg-red-200')
+            setFormOutcomeMessage(responseData.msg)
         }
     };
 
@@ -98,9 +99,8 @@ function RegistrationFormMolecule() {
                 message={formOutcomeMessage}
                 className={'text-sm border-2 px-1 py-3 place-self-center w-2/3 ' + formOutcomeColors}
             />
-            <DisplayAtom text={errorMessage}/>
             <Link to={"/"}>
-                <ButtonAtom value="Cancel"></ButtonAtom>{" "}
+                <ButtonAtom value="Cancel"></ButtonAtom>
             </Link>
         </div>
     );

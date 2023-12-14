@@ -1,5 +1,5 @@
 import LoginFormMolecule from "../../Molecules/LoginFormMolecule";
-import { Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 
 function LoginTemplate() {

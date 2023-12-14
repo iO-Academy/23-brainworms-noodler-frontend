@@ -26,7 +26,6 @@ function LoginFormMolecule() {
         };
         const response = await fetch("http://0.0.0.0:8080/login", customSettings);
         const responseData = await response.json();
-        console.log(responseData)
 
         if (responseData.success) {
             navigate("/user", {state: {responseData}})
@@ -35,9 +34,9 @@ function LoginFormMolecule() {
         }
     }
     return (
-        <div className='flex flex-col gap-4 align items-center '>
-            <InputAtom className="text-xl p-4" label="Email:" setFunc={setEmail}/>
-            <InputAtom className="text-xl p-4" label="Password:" type="password" setFunc={setPassword}/>
+        <div className='flex flex-col gap-4 align items-center'>
+            <InputAtom label="Email:" setFunc={setEmail}/>
+            <InputAtom label="Password:" type="password" setFunc={setPassword}/>
             <ButtonAtom value="Login" onClick={sendData}/>
             <DisplayAtom text={errorMessage}/>
         </div>
