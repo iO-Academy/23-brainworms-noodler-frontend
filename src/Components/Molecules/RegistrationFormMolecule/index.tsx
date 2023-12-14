@@ -100,7 +100,7 @@ function RegistrationFormMolecule() {
                 className={'text-sm border-2 px-1 py-3 place-self-center w-2/3 ' + formOutcomeColors}
             />
             <Link to={"/"}>
-                <ButtonAtom value="Cancel"></ButtonAtom>{" "}
+                <ButtonAtom value="Cancel"></ButtonAtom>
             </Link>
         </div>
     );
