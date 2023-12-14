@@ -90,7 +90,6 @@ function RegistrationFormMolecule() {
         type="password"
         label="* Password: "
         setFunc={setPassword}></InputAtom>
-      {/*<InputAtom className="p-4" label="Description: " type='text' maxlength={500} setFunc={setDescription}></InputAtom>*/}
       <TextAreaAtom label="Description: " setFunc={setDescription} maxlength={500}/>
       <ButtonAtom value="Sign Up" onClick={submitRegistrationData}></ButtonAtom>
       <FormOutcomeAtom
