@@ -1,12 +1,14 @@
 interface LogoProps {
     image: string
-}
-function logoAtom (props: LogoProps) {
-    return (
-        <>
-            <img src={props.image}></img>
-        </>
-    )
+    width?: number
 }
 
-export default logoAtom
+function LogoAtom(props: LogoProps) {
+    return (
+        <div className="flex justify-center items-center">
+            <img src={props.image} alt="logo" width={props.width}/>
+        </div>
+    );
+}
+
+export default LogoAtom;

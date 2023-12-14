@@ -38,7 +38,7 @@ function HeaderTemplate (props: iProps) {
 
     return (
         <>
-            <LogoAtom image="https://placedog.net/200/200"></LogoAtom>
+            <LogoAtom image="public/assets/Noodler-logo.png"></LogoAtom>
             <DisplayAtom text={username}></DisplayAtom>
             <DisplayAtom text={description}></DisplayAtom>
         </>

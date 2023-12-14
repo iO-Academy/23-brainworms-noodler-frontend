@@ -1,11 +1,10 @@
 import LoginTemplate from "../../Templates/LoginTemplate";
 import LogoAtom from "../../Atoms/LogoAtom";
 
-function LoginPage()
-{
+function LoginPage() {
     return (
         <>
-            <LogoAtom image='https://placedog.net/200/200' />
+            <LogoAtom image='public/assets/Noodler-logo.png' />
             <LoginTemplate />
         </>
     )
