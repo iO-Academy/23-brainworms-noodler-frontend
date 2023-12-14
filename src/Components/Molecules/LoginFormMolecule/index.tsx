@@ -3,6 +3,7 @@ import ButtonAtom from "../../Atoms/ButtonAtom";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import DisplayAtom from "../../Atoms/DisplayAtom";
+import LogoAtom from "../../Atoms/LogoAtom";
 
 function LoginFormMolecule() {
     const [email, setEmail] = useState("");
@@ -35,7 +36,7 @@ function LoginFormMolecule() {
     }
 
     return (
-        <div className='flex flex-col gap-4 align items-center'>
+        <div className='flex flex-col gap-4 align items-center '>
             <InputAtom className="text-xl p-4" label="Email:" setFunc={setEmail}/>
             <InputAtom className="text-xl p-4" label="Password:" type="password" setFunc={setPassword}/>
             <ButtonAtom value="Login" onClick={sendData}/>
