@@ -23,7 +23,6 @@ function RegistrationFormMolecule() {
     const [formOutcomeColors, setFormOutcomeColors] = useState("hidden")
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=?!]).*$/;
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState("");
 
     let regFormInput = {
         username: username,
@@ -68,7 +67,6 @@ function RegistrationFormMolecule() {
         if (responseData.success) {
             navigate("/user", {state: {responseData}})
         } else {
-            setErrorMessage(responseData.msg)
             setFormOutcomeColors('block bg-red-200')
             setFormOutcomeMessage(responseData.msg)
         }

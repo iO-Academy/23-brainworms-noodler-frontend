@@ -2,14 +2,14 @@ import InputAtom from "../../Atoms/InputAtom";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import DisplayAtom from "../../Atoms/DisplayAtom";
-import LogoAtom from "../../Atoms/LogoAtom";
+import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
 
 function LoginFormMolecule() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("")
+    const [formOutcomeColors, setFormOutcomeColors] = useState("hidden")
 
     const formInput = {
         userEmail: email,
@@ -31,6 +31,7 @@ function LoginFormMolecule() {
             navigate("/user", {state: {responseData}})
         } else {
             setErrorMessage(responseData.msg)
+            setFormOutcomeColors('block bg-red-100');
         }
     }
     return (
@@ -40,7 +41,10 @@ function LoginFormMolecule() {
                 <InputAtom className="text-xl" label="Password:" type="password" setFunc={setPassword}/>
             </div>
             <ButtonAtom value="Login" onClick={sendData}/>
-            <DisplayAtom text={errorMessage}/>
+            <FormOutcomeAtom
+                message={errorMessage}
+                className={'text-sm border-2 px-1 py-3 place-self-center w-2/3 ' + formOutcomeColors}
+            />
         </div>
     );
 }
