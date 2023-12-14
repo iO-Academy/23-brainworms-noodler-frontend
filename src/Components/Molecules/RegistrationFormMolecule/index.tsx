@@ -27,6 +27,7 @@ function RegistrationFormMolecule() {
   };
 
   const sendData = async () => {
+    console.log(formInput)
     const customSettings = {
       method: "POST",
       body: JSON.stringify(formInput), //turn obj into JSON format

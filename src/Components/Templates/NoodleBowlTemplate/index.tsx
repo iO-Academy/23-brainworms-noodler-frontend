@@ -1,24 +1,20 @@
 import NoodleDisplayMolecule from "../../Molecules/NoodleDisplayMolecule";
 import ButtonAtom from "../../Atoms/ButtonAtom";
 import {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
 
 interface iNoodleBowlProps {
     setNewNoodleToggle: (value: boolean) => void,
-    displayNewNoodleToggle: boolean
+    displayNewNoodleToggle: boolean,
+    userId: number
 }
 
 function NoodleBowlTemplate (props: iNoodleBowlProps) {
-    const {setNewNoodleToggle, displayNewNoodleToggle} = props
-    const location = useLocation()
-    const data = location.state
+    const { userId, setNewNoodleToggle, displayNewNoodleToggle } = props
     const [noodles, setNoodles] = useState([])
-    const userId = data.responseData.userId
-
 
     //fetch all noodles from db and render noodle display molecules for each noodle
     useEffect(() => {
-        async function fetchData(){
+        async function fetchData() {
             const customSettings = {
                 method: "GET",
                 headers: {
@@ -30,23 +26,21 @@ function NoodleBowlTemplate (props: iNoodleBowlProps) {
             setNoodles(userNoodles)
         }
         fetchData()
-    }, [])
-
-
+    }, [noodles])
 
     //on click Add New Noodle - display new noodle template - using setNewNoodleToggle func
-    function handleClick () {
+    function handleClick() {
         setNewNoodleToggle(!displayNewNoodleToggle)
     }
 
-
     return (
         <>
-            <div>{noodles.map((noodle) => {
-                return <NoodleDisplayMolecule id={noodle.id} noodle={noodle.noodle} time={noodle.time}/>
-            })}</div>
             <ButtonAtom value="Add New Noodle" onClick={handleClick}/>
+            <div>{noodles.map((noodle) => {
+                return <NoodleDisplayMolecule key= {noodle.id} id={noodle.id} noodle={noodle.noodle} time={noodle.time}/>
+            })}</div>
+
         </>
     )
-
+}
 export default NoodleBowlTemplate
