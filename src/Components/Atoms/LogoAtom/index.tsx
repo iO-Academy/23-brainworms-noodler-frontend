@@ -2,13 +2,14 @@
 // import '.public/assets/Noodler-logo.png'
 
 interface LogoProps {
-    image: string;
+    image: string
+    width?: number
 }
 
 function LogoAtom(props: LogoProps) {
     return (
         <div className="flex justify-center items-center">
-            <img src={props.image} alt="logo" />
+            <img src={props.image} alt="logo" width={props.width}/>
         </div>
     );
 }
