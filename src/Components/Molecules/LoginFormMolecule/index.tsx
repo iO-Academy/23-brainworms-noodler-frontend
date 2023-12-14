@@ -3,6 +3,7 @@ import ButtonAtom from "../../Atoms/ButtonAtom";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import DisplayAtom from "../../Atoms/DisplayAtom";
+import LogoAtom from "../../Atoms/LogoAtom";
 
 function LoginFormMolecule() {
     const [email, setEmail] = useState("");
@@ -32,7 +33,6 @@ function LoginFormMolecule() {
             setErrorMessage(responseData.msg)
         }
     }
-
     return (
         <div className='flex flex-col gap-4 align items-center'>
             <InputAtom label="Email:" setFunc={setEmail}/>

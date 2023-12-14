@@ -36,7 +36,7 @@ function HeaderTemplate () {
 
     return (
         <>
-            <LogoAtom image="public/assets/Noodler-logo.png"></LogoAtom>
+            <LogoAtom className="object-cover absolute top-24 left-24 h-60 w-60" image="public/assets/Noodler-logo.png"></LogoAtom>
             <DisplayAtom text={username}></DisplayAtom>
             <DisplayAtom text={description}></DisplayAtom>
         </>

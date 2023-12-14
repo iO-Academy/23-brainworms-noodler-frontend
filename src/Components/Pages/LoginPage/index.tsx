@@ -4,7 +4,7 @@ import LogoAtom from "../../Atoms/LogoAtom";
 function LoginPage() {
     return (
         <>
-            <LogoAtom image='public/assets/Noodler-logo.png' />
+            <LogoAtom width={400} image='public/assets/Noodler-logo.png' />
             <LoginTemplate />
         </>
     )
