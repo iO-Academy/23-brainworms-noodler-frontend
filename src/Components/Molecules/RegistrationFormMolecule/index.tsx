@@ -4,7 +4,6 @@ import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import LogoAtom from "../../Atoms/LogoAtom";
 import FormOutcomeAtom from "../../Atoms/FormOutcomeAtom";
-import DisplayAtom from "../../Atoms/DisplayAtom";
 import TextAreaAtom from "../../Atoms/TextAreaAtom";
 
 
